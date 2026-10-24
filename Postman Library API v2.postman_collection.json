@@ -1,0 +1,409 @@
+{
+  "info": {
+    "_postman_id": "e1ba2601-c369-4b61-8d52-b3418c87d71d",
+    "name": "Postman Library API v2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59116703",
+    "_collection_link": "https://go.postman.co/collection/59116703-e1ba2601-c369-4b61-8d52-b3418c87d71d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "get books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get fiction book",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?genre=fiction&checkedOut=false",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "genre",
+              "value": "fiction"
+            },
+            {
+              "key": "checkedOut",
+              "value": "false",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get book by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "fd90a424-86a2-4311-a70a-dca89ae4cc49"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// save the \"id\" value from the response to a variable named \"id\"\r",
+              "const id = pm.response.json().id\r",
+              "// save the id as a collection variable named \"id\"\r",
+              "pm.collectionVariables.set(\"id\", id)"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Good vibes Good life new\",\r\n  \"author\": \"Vex King\",\r\n  \"genre\": \"Self development\",\r\n  \"yearPublished\": 2018\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "checkout book",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n  \"checkedOut\": true \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "056bee81-2fc2-4811-aba8-bad68acb6370"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete book",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n  \"checkedOut\": true \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "056bee81-2fc2-4811-aba8-bad68acb6370"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "skill check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "\r",
+              "const actorName = pm.response.json()\r",
+              "pm.collectionVariables.set(\"favoriteActor\", actorName)"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "skillcheck",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "student-expert",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"actorName\" : \"Surya\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{skillcheckBaseUrl}}/post?movieName=singam",
+          "host": [
+            "{{skillcheckBaseUrl}}"
+          ],
+          "path": [
+            "post"
+          ],
+          "query": [
+            {
+              "key": "movieName",
+              "value": "singam"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "skill check",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"actorName\" : \"Surya\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{skillcheckBaseUrl}}/post?movieName=singam",
+              "host": [
+                "{{skillcheckBaseUrl}}"
+              ],
+              "path": [
+                "post"
+              ],
+              "query": [
+                {
+                  "key": "movieName",
+                  "value": "singam"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 21 Oct 2026 15:18:35 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"1e0-hDMxtvPJMvEtzRlAF5eHgxM52ZE\""
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "x-envoy-upstream-service-time",
+              "value": "5"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "set-cookie",
+              "value": "sails.sid=s%3ARF_xtHDtFQ7ZuX2UszNTHVsVBQE_vlzK.fUvkERqXpfhkYW9S%2F2p3WFrxJShnSuW2HeLB2gqUjWM; Path=/; HttpOnly"
+            },
+            {
+              "key": "set-cookie",
+              "value": "__cf_bm=1UsH_SAj2YQgDwcbQUbiQkc83pqbDDBd97BEdOh8zYM-1792595915.7774615-1.0.1.1-5grnVH3qmzNTcCaRdMOWDq11l_WSM3W.eJcDPtm22RFurTVgDyOLA5KO773zTELRRooQndEkMlmYYdP6lvL2s2JecqNhSQ5SXt6ICeRP8e6i8LPeSkS8hCKJyJWTEbm9; HttpOnly; SameSite=None; Secure; Path=/; Domain=postman-echo.com; Expires=Wed, 21 Oct 2026 15:48:35 GMT"
+            },
+            {
+              "key": "set-cookie",
+              "value": "_cfuvid=KUwc6V3aJMe8TGs0T2WwHk3xN4lhBDdWps.2ISq3OyM-1792595915.7774615-1.0.1.1-ITNMndH8PmPcxEL9w.xez58e.h3yM1pg4GQOJUCKzKg; HttpOnly; SameSite=None; Secure; Path=/; Domain=postman-echo.com"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "cf-ray",
+              "value": "a4e13c599befd634-IAD"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"args\": {\n    \"movieName\": \"singam\"\n  },\n  \"data\": {\n    \"actorName\": \"Surya\"\n  },\n  \"files\": {},\n  \"form\": {},\n  \"headers\": {\n    \"host\": \"postman-echo.com\",\n    \"x-forwarded-proto\": \"https\",\n    \"student-expert\": \"skillcheck\",\n    \"accept-encoding\": \"gzip, br\",\n    \"accept\": \"*/*\",\n    \"user-agent\": \"PostmanRuntime/2.12.0\",\n    \"content-length\": \"31\",\n    \"cache-control\": \"no-cache\",\n    \"postman-token\": \"c896af2f-c5cc-4968-a38c-eba03247f53a\",\n    \"content-type\": \"application/json\"\n  },\n  \"json\": {\n    \"actorName\": \"Surya\"\n  },\n  \"url\": \"https://postman-echo.com/post?movieName=singam\"\n}"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "postmanrulz",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "api-key",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://library-api.postmanlabs.com"
+    },
+    {
+      "key": "id",
+      "value": ""
+    },
+    {
+      "key": "skillcheckBaseUrl",
+      "value": "https://postman-echo.com"
+    },
+    {
+      "key": "favoriteActor",
+      "value": ""
+    }
+  ]
+}
